@@ -1,0 +1,61 @@
+{
+  "project": "BondPilot",
+  "agent": "YieldAgent",
+  "version": "v0.2",
+  "date": "20260605",
+  "generated_at": "2026-06-10 23:54:45",
+  "market_view": "资金情绪指数53.0，略高于50均衡线，资金面均衡略偏紧。 DR001=1.359，上行5.6BP，资金价格边际收敛；DR007=1.38，变化2.8BP，资金价格整体平稳；R001=1.381，上行4.5BP，资金价格边际收敛；R007=1.394，变化0.9BP，资金价格整体平稳 30Y债券买卖力量对全天买方：银行+200、基金+171、保险+116；卖方：券商-362。；10Y国债买卖力量对全天买方：银行+153、基金+27、保险+18；卖方：券商-132、其他-43。；10Y国开买卖力量对比指数全天买方：银行+224、保险+18、其他+2；卖方：券商-202、基金-146。",
+  "decision_basis": [
+    "Funding sentiment and money market rates are used to judge liquidity pressure.",
+    "Institution behavior is used to identify main buyers and sellers in 30Y and 10Y bonds.",
+    "Daily futures review and intraday bars are used to judge TL/T market structure.",
+    "The agent stays in observe mode when signals are mixed or when chasing risk is high."
+  ],
+  "risk_controls": [
+    "Demo only.",
+    "No real trade execution.",
+    "Human approval required before wallet action.",
+    "Max demo budget is limited to 100 USDC.",
+    "Private keys are never exposed to the agent."
+  ],
+  "why_cobo_wallet": "Cobo Agentic Wallet is used as the controlled execution layer. YieldAgent can only prepare a policy-guarded mock task with budget limits and human approval, instead of directly moving assets.",
+  "signal": "observe",
+  "risk_level": "medium",
+  "action_plan": [
+    "Do not execute any real trade in demo mode.",
+    "Use TL and T as the main observation targets.",
+    "Check whether intraday strength is confirmed by funding and institution behavior.",
+    "Keep observe-only stance before confirmation.",
+    "Do not chase TL at high level.",
+    "Watch whether T and TL can hold key moving-average support."
+  ],
+  "wallet_policy": {
+    "mode": "demo_only",
+    "max_budget": "100 USDC",
+    "requires_human_approval": true,
+    "no_real_trade": true,
+    "allowed_actions": [
+      "create_demo_budget",
+      "create_audit_log",
+      "prepare_policy_guarded_task"
+    ],
+    "blocked_actions": [
+      "real_trade",
+      "unapproved_transfer",
+      "private_key_access"
+    ],
+    "risk_level": "medium",
+    "policy_note": "YieldAgent can only create a mock wallet action. Real execution requires explicit human approval."
+  },
+  "cobo_action_mock": {
+    "platform": "Cobo Agentic Wallet",
+    "action": "create_policy_guarded_task",
+    "asset": "USDC",
+    "amount": "100",
+    "purpose": "demo strategy budget for YieldAgent",
+    "status": "pending_human_approval",
+    "execution": "mock_only",
+    "reason": "YieldAgent signal is observe."
+  },
+  "audit_note": "Decision generated from treasury futures review, DM intraday data, funding sentiment and institution behavior. Demo only; not investment advice."
+}
